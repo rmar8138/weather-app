@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weatherapp</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <form class="search">
+            <input type="text" class="search__input" placeholder="Search">
+            <ion-icon name="search" class="search__icon"></ion-icon>
+            <ul class="search__results">
+                <!-- <li class="search__results__item" data-woeid="">Tokyo</li>
+                <li class="search__results__item" data-woeid="">Kyoto</li>
+                <li class="search__results__item" data-woeid="">Sapporo</li>
+                <li class="search__results__item" data-woeid="">Seoul</li>
+                <li class="search__results__item" data-woeid="">Beijing</li>
+                <li class="search__results__item" data-woeid="">Tokyo</li>
+                <li class="search__results__item" data-woeid="">Kyoto</li>
+                <li class="search__results__item" data-woeid="">Sapporo</li>
+                <li class="search__results__item" data-woeid="">Seoul</li>
+                <li class="search__results__item" data-woeid="">Beijing</li> -->
+            </ul>
+        </form>
+
+        <div class="card">
+            <div class="card__place-name">
+                <h2 class="heading-secondary">Sydney</h2>
+            </div>
+            <div class="card__temp">
+                <span class="card__temp--date">22nd July</span>
+                <span class="card__temp--main">26&deg;C</span>
+                <span class="card__temp--hi-lo">17&deg;C | 32&deg;C</span>
+            </div>
+            <div class="card__icon">
+                <img class="card__icon__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                <span class="card__icon__description">Clear</span>
+            </div>
+            <div class="card__next-five">
+                <ul class="card__next-five__list">
+
+                    <li class="card__next-five__list-item">
+                        <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                        <div class="card__next-five__list-item__temp">
+                            <span class="card__next-five__list-item__temp--main">27&deg;C</span>
+                            <span class="card__next-five__list-item__temp--hi-lo">17&deg;C 32&deg;C</span>
+                            <span class="card__next-five__list-item__temp--date">23/07</span>
+                        </div>
+                    </li>
+
+                    <li class="card__next-five__list-item">
+                        <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                        <div class="card__next-five__list-item__temp">
+                            <span class="card__next-five__list-item__temp--main">27&deg;C</span>
+                            <span class="card__next-five__list-item__temp--hi-lo">17&deg;C 32&deg;C</span>
+                            <span class="card__next-five__list-item__temp--date">24/07</span>
+                        </div>
+                    </li>
+
+                    <li class="card__next-five__list-item">
+                        <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                        <div class="card__next-five__list-item__temp">
+                            <span class="card__next-five__list-item__temp--main">27&deg;C</span>
+                            <span class="card__next-five__list-item__temp--hi-lo">17&deg;C 32&deg;C</span>
+                            <span class="card__next-five__list-item__temp--date">25/07</span>
+                        </div>
+                    </li>
+
+                    <li class="card__next-five__list-item">
+                        <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                        <div class="card__next-five__list-item__temp">
+                            <span class="card__next-five__list-item__temp--main">27&deg;C</span>
+                            <span class="card__next-five__list-item__temp--hi-lo">17&deg;C 32&deg;C</span>
+                            <span class="card__next-five__list-item__temp--date">26/07</span>
+                        </div>
+                    </li>
+
+                    <li class="card__next-five__list-item">
+                        <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/c.svg" alt="">
+                        <div class="card__next-five__list-item__temp">
+                            <span class="card__next-five__list-item__temp--main">27&deg;C</span>
+                            <span class="card__next-five__list-item__temp--hi-lo">17&deg;C 32&deg;C</span>
+                            <span class="card__next-five__list-item__temp--date">27/07</span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+body {
+    font-family: 'Lato', 'Arial', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: $color-white;
+    text-rendering: optimizeLegibility;
+}
+
+.heading-secondary {
+    font-size: 3rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
