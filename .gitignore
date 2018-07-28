@@ -1,2 +1,8 @@
-dist/
 node_modules/
+src/
+.babelrc
+.gitignore
+.nojekyll
+package-lock.json
+package.json
+webpack.config.js

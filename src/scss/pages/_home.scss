@@ -3,10 +3,13 @@ body {
 }
 
 .container {
-    width: 35rem;
-    height: 60rem;
+    // width: 35rem;
+    // height: 60rem;
+    height: 45rem;
+    width: 32.4rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow: hidden;
 }

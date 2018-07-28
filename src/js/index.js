@@ -4,6 +4,7 @@ import Result from './models/Result';
 import { elements } from './views/base';
 import * as searchView from './views/searchView';
 import * as resultView from './views/resultView';
+import * as menuView from './views/menuView';
 
 const state = {};
 
@@ -25,7 +26,7 @@ const controlSearch = async () => {
         resultView.displaySpinner(elements.container);
 
         // add card background blur
-        resultView.addBlur();
+        // resultView.addBlur();
 
         try {
             await state.search.getResults();
@@ -58,7 +59,7 @@ const controlSearch = async () => {
             resultView.removeSpinner(elements.card);
 
             // remove card background blur
-            resultView.removeBlur();
+            // resultView.removeBlur();
         } catch (error) {
             alert(error);
         }
@@ -75,7 +76,7 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
         resultView.displaySpinner(elements.container);
 
         // add card background blur
-        resultView.addBlur();
+        // resultView.addBlur();
 
         await state.result.getWeather();
         // console.log(state.result.weather);
@@ -85,7 +86,7 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
         resultView.removeSpinner();
 
         // remove card background blur
-        resultView.removeBlur();
+        // resultView.removeBlur();
         
         for (let i = 0; i < 6; i++) {
             let dataArr = [
@@ -142,3 +143,12 @@ window.addEventListener('keyup', e => {
         }
     }
 });
+
+
+// Display menu
+
+document.querySelector('.search__menu-icon').addEventListener('click', menuView.showMenu);
+
+// Hide menu
+
+document.querySelector('.menu__close').addEventListener('click', menuView.hideMenu);

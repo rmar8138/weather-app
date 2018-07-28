@@ -23,9 +23,14 @@ export const displayWeather = (icon, description, date, temp, lo, hi, place) => 
         </div>
     `;
 
-    while (elements.card.firstChild) {
-        elements.card.removeChild(elements.card.firstChild);
-    }
+    // while (elements.card.firstChild) {
+    //     elements.card.removeChild(elements.card.firstChild);
+    // }
+
+    elements.card.removeChild(elements.cardPlaceName);
+    elements.card.removeChild(elements.cardTemp);
+    elements.card.removeChild(elements.cardIcon);
+    elements.card.removeChild(elements.cardNextFive);
 
     elements.card.insertAdjacentHTML('beforeend', weatherCardTemplate);
     elements.card.insertAdjacentHTML('beforeend', listContainer);
