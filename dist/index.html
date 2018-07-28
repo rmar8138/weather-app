@@ -10,24 +10,15 @@
 </head>
 <body>
     <div class="container">
-        <form class="search">
-            <input type="text" class="search__input" placeholder="Search">
-            <ion-icon name="search" class="search__icon"></ion-icon>
-            <ul class="search__results">
-                <!-- <li class="search__results__item" data-woeid="">Tokyo</li>
-                <li class="search__results__item" data-woeid="">Kyoto</li>
-                <li class="search__results__item" data-woeid="">Sapporo</li>
-                <li class="search__results__item" data-woeid="">Seoul</li>
-                <li class="search__results__item" data-woeid="">Beijing</li>
-                <li class="search__results__item" data-woeid="">Tokyo</li>
-                <li class="search__results__item" data-woeid="">Kyoto</li>
-                <li class="search__results__item" data-woeid="">Sapporo</li>
-                <li class="search__results__item" data-woeid="">Seoul</li>
-                <li class="search__results__item" data-woeid="">Beijing</li> -->
-            </ul>
-        </form>
-
         <div class="card">
+            <form class="search">
+                <input type="text" class="search__input" placeholder="Search">
+                <button class="search__button">
+                    <ion-icon name="search" class="search__button__icon"></ion-icon>
+                </button>
+                <ion-icon name="menu" class="search__menu-icon"></ion-icon>
+                <ul class="search__results"></ul>
+            </form>
             <div class="card__place-name">
                 <h2 class="heading-secondary">Sydney</h2>
             </div>
@@ -90,7 +81,20 @@
 
                 </ul>
             </div>
-        </div>
+        </div>  
+        <div class="menu">
+            <h1 class="heading-primary">
+                Weatherapp
+            </h1>
+            <p class="menu__description">
+                A simple weather app powered by the MetaWeather API. Created by Ragan Martinez
+            </p>
+            <ion-icon name="close" class="menu__close"></ion-icon>
+            <div class="menu__scale">
+                <span class="menu__scale--c">C&deg;</span>
+                <span class="menu__scale--f">F&deg;</span>
+            </div>
+        </div>      
     </div>
     <script src="https://unpkg.com/ionicons@4.2.4/dist/ionicons.js"></script>
 <script type="text/javascript" src="js/bundle.js"></script></body>
