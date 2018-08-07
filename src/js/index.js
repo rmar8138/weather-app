@@ -8,6 +8,9 @@ import * as menuView from './views/menuView';
 
 const state = {};
 
+state.scale = 'c'; // default scale is celsius as per MetaWeather API
+menuView.scaleButtonBackground(state.scale); // set default scale button to celsius
+
 // Search Controller
 
 const controlSearch = async () => {
@@ -111,6 +114,11 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
             }
         }
 
+        if (state.scale === 'f') {
+            // convert temp to farenheit
+            resultView.changeScale(state.scale);
+        }
+
     } catch (error) {
         alert(error);
     }
@@ -152,3 +160,33 @@ document.querySelector('.search__menu-icon').addEventListener('click', menuView.
 // Hide menu
 
 document.querySelector('.menu__close').addEventListener('click', menuView.hideMenu);
+
+// If Farenheit is selected, change current DOM to F and state to F, so future API calls are converted to F
+document.querySelector('.menu__scale--f').addEventListener('click', () => {
+    
+    // Only convert temp if user is switching from one scale to another
+    if (state.scale === 'c') {
+        resultView.changeScale('f');
+    }
+    
+    state.scale = 'f';
+
+    // Add highlight to button in dom, disable click 
+    menuView.scaleButtonBackground(state.scale);
+})
+
+// If Celsius is selected, change current DOM to C and state to C, so API temp calls are back to default (C)
+document.querySelector('.menu__scale--c').addEventListener('click', () => {
+
+    // Add highlight to button in dom, disable click 
+
+    // Only convert temp if user is switching from one scale to another
+    if (state.scale === 'f') {
+        resultView.changeScale('c');
+    }
+
+    state.scale = 'c';
+
+    // Add highlight to button in dom, disable click 
+    menuView.scaleButtonBackground(state.scale);
+})

@@ -1,5 +1,6 @@
 import { elements } from './base';
 import { Spinner } from 'spin.js';
+import * as menuView from './menuView';
 
 export const displayWeather = (icon, description, date, temp, lo, hi, place) => {
     const weatherCardTemplate = `
@@ -9,7 +10,7 @@ export const displayWeather = (icon, description, date, temp, lo, hi, place) => 
         <div class="card__temp">
             <span class="card__temp--date">${date}</span>
             <span class="card__temp--main">${Math.round(temp)}&deg;C</span>
-            <span class="card__temp--hi-lo">${Math.round(lo)}&deg;C | ${Math.round(hi)}&deg;C</span>
+            <span class="card__temp--hi-lo">Max: ${Math.round(lo)}&deg;C Min: ${Math.round(hi)}&deg;C</span>
         </div>
         <div class="card__icon">
             <img class="card__icon__img" src="https://www.metaweather.com/static/img/weather/${icon}.svg" alt="${description}">
@@ -27,10 +28,15 @@ export const displayWeather = (icon, description, date, temp, lo, hi, place) => 
     //     elements.card.removeChild(elements.card.firstChild);
     // }
 
-    elements.card.removeChild(elements.cardPlaceName);
-    elements.card.removeChild(elements.cardTemp);
-    elements.card.removeChild(elements.cardIcon);
-    elements.card.removeChild(elements.cardNextFive);
+    // elements.card.removeChild(elements.cardPlaceName);
+    // elements.card.removeChild(elements.cardTemp);
+    // elements.card.removeChild(elements.cardIcon);
+    // elements.card.removeChild(elements.cardNextFive);
+
+    document.querySelector('.card').removeChild(document.querySelector('.card__place-name'));
+    document.querySelector('.card').removeChild(document.querySelector('.card__temp'));
+    document.querySelector('.card').removeChild(document.querySelector('.card__icon'));
+    document.querySelector('.card').removeChild(document.querySelector('.card__next-five'));
 
     elements.card.insertAdjacentHTML('beforeend', weatherCardTemplate);
     elements.card.insertAdjacentHTML('beforeend', listContainer);
@@ -96,6 +102,37 @@ export const addBlur = () => {
 export const removeBlur = () => {
     // remove blur background 
     elements.card.classList.remove('blur');
+};
+
+export const changeScale = (scale) => {
+    convertTemp(document.querySelector('.card__temp--main'), scale);
+    convertTemp(document.querySelector('.card__temp--hi-lo'), scale);
+
+    document.querySelectorAll('.card__next-five__list-item__temp--main').forEach(cur => {
+        convertTemp(cur, scale);
+    });
+    document.querySelectorAll('.card__next-five__list-item__temp--hi-lo').forEach(cur => {
+        convertTemp(cur, scale);
+    });
+};
+
+const convertTemp = (domElement, scale) => {
+    let array = domElement.textContent.split(' ');
+    let newTemp = array.map((cur) => {
+        if (cur.includes('°')) {
+            scale === 'f' ? cur = Math.round(parseInt(cur) * 1.8 + 32) // convert to farenheit
+                          : cur = Math.round((parseInt(cur) - 32) / 1.8); // convert to celsius
+            cur.toString();
+            scale === 'f' ? cur += '°F'
+                          : cur += '°C';
+            return cur;
+        } else {
+            return cur;
+        }
+    });
+
+    newTemp = newTemp.join(' ');
+    domElement.textContent = newTemp;
 };
 
 

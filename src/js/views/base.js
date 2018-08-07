@@ -12,5 +12,9 @@ export const elements = {
     nextFiveList: document.querySelector('.card__next-five__list'),
     menuIcon: document.querySelector('.search__menu-icon'),
     menu: document.querySelector('.menu'),
-    menuClose: document.querySelector('.menu__close')
+    menuClose: document.querySelector('.menu__close'),
+    mainTemp: document.querySelector('.card__temp--main'),
+    mainHiLo: document.querySelector('.card__temp--hi-lo'),
+    nextFiveMainTemp: document.querySelector('.card__next-five__list-item__temp--main'),
+    nextFiveHiLo: document.querySelector('.card__next-five__list-item__temp--hi-lo')
 };
