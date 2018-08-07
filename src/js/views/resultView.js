@@ -24,15 +24,6 @@ export const displayWeather = (icon, description, date, temp, lo, hi, place) => 
         </div>
     `;
 
-    // while (elements.card.firstChild) {
-    //     elements.card.removeChild(elements.card.firstChild);
-    // }
-
-    // elements.card.removeChild(elements.cardPlaceName);
-    // elements.card.removeChild(elements.cardTemp);
-    // elements.card.removeChild(elements.cardIcon);
-    // elements.card.removeChild(elements.cardNextFive);
-
     document.querySelector('.card').removeChild(document.querySelector('.card__place-name'));
     document.querySelector('.card').removeChild(document.querySelector('.card__temp'));
     document.querySelector('.card').removeChild(document.querySelector('.card__icon'));
