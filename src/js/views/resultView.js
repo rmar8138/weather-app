@@ -85,16 +85,6 @@ export const setBackground = todaysWeather => {
     elements.card.classList.add(`bg-${weatherAbbrv}`);
 };
 
-export const addBlur = () => {
-    // blur background during loading + modal popup
-    elements.card.classList.add('blur');
-};
-
-export const removeBlur = () => {
-    // remove blur background 
-    elements.card.classList.remove('blur');
-};
-
 export const changeScale = (scale) => {
     convertTemp(document.querySelector('.card__temp--main'), scale);
     convertTemp(document.querySelector('.card__temp--hi-lo'), scale);

@@ -16,5 +16,7 @@ export const elements = {
     mainTemp: document.querySelector('.card__temp--main'),
     mainHiLo: document.querySelector('.card__temp--hi-lo'),
     nextFiveMainTemp: document.querySelector('.card__next-five__list-item__temp--main'),
-    nextFiveHiLo: document.querySelector('.card__next-five__list-item__temp--hi-lo')
+    nextFiveHiLo: document.querySelector('.card__next-five__list-item__temp--hi-lo'),
+    error: document.querySelector('.error'),
+    errorClose: document.querySelector('.error__close')
 };

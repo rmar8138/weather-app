@@ -22,6 +22,10 @@
         &:focus {
             outline: none;
         }
+
+        &::placeholder {
+            color: $color-grey-light-2;
+        }
     }
 
     &__button {

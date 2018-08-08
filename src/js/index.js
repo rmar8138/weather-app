@@ -11,7 +11,9 @@ const state = {};
 state.scale = 'c'; // default scale is celsius as per MetaWeather API
 menuView.scaleButtonBackground(state.scale); // set default scale button to celsius
 
+//////////////////////////
 // Search Controller
+//////////////////////////
 
 const controlSearch = async () => {
 
@@ -28,12 +30,9 @@ const controlSearch = async () => {
         // display spinner
         resultView.displaySpinner(elements.container);
 
-        // add card background blur
-        // resultView.addBlur();
-
         try {
             await state.search.getResults();
-            console.log(state.search.result);
+
             if (state.search.result.length === 1) {
                 // If only one result
 
@@ -44,7 +43,7 @@ const controlSearch = async () => {
 
             } else if (state.search.result.length > 1) {
                 // If more than one result
-                //generate search items
+                // generate search items
                 for (let i = 0; i < state.search.result.length; i++) {
                     searchView.generateSearchList(state.search.result[i].title, state.search.result[i].woeid);
                 }
@@ -53,23 +52,22 @@ const controlSearch = async () => {
                 searchView.displaySearch();
 
             } else {
-                // If no result
-
-                // Display message saying no results found
+                // If no result, display message saying no results found
+                elements.error.classList.toggle('error-active');
             }
 
             // remove spinner
             resultView.removeSpinner(elements.card);
 
-            // remove card background blur
-            // resultView.removeBlur();
         } catch (error) {
             alert(error);
         }
     }
 }
 
+//////////////////////////
 // Result Controller
+//////////////////////////
 
 const controlResult = async (ID = state.search.result[0].woeid) => {
 
@@ -78,18 +76,11 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
         // display spinner, will be removed by resultView.displayWeather
         resultView.displaySpinner(elements.container);
 
-        // add card background blur
-        // resultView.addBlur();
-
         await state.result.getWeather();
-        // console.log(state.result.weather);
         // call searchview to display results in dom
 
         // remove spinner
         resultView.removeSpinner();
-
-        // remove card background blur
-        // resultView.removeBlur();
         
         for (let i = 0; i < 6; i++) {
             let dataArr = [
@@ -124,27 +115,36 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
     }
 }
 
+//////////////////////////
+// Event Listeners
+//////////////////////////
+
+// Search when user submits search form
 elements.searchForm.addEventListener('submit', e => {
-    // Regular search
     e.preventDefault();
     controlSearch();
 });
 
+// Display result when user clicks on search item
 elements.searchResults.addEventListener('click', e => {
-    // User selects list item
     searchView.removeSearch();
     controlResult(e.target.dataset.woeid);
 });
 
+// Close error message
+elements.errorClose.addEventListener('click', () => {
+    elements.error.classList.toggle('error-active');
+});
+
+// Remove search list when user clicks outside of it
 window.addEventListener('click', e => {
-    // If user clicks outside results list, remove
     if (!elements.searchResults.contains(e.target)) {
         searchView.removeSearch();
     }
 });
 
+// Remove search list when user hits the esc button
 window.addEventListener('keyup', e => {
-    // if user presses escape key while search result list is present, remove search list
     if (e.which === 27) {
         if (elements.searchResults) {
             searchView.removeSearch();
@@ -152,16 +152,13 @@ window.addEventListener('keyup', e => {
     }
 });
 
-
-// Display menu
-
+// Display menu when user clicks menu icon
 document.querySelector('.search__menu-icon').addEventListener('click', menuView.showMenu);
 
-// Hide menu
-
+// Hide menu when user clicks menu close icon
 document.querySelector('.menu__close').addEventListener('click', menuView.hideMenu);
 
-// If Farenheit is selected, change current DOM to F and state to F, so future API calls are converted to F
+// If Farenheit is selected, change current DOM to F and global state to 'f', so future API calls are converted to F
 document.querySelector('.menu__scale--f').addEventListener('click', () => {
     
     // Only convert temp if user is switching from one scale to another
@@ -177,8 +174,6 @@ document.querySelector('.menu__scale--f').addEventListener('click', () => {
 
 // If Celsius is selected, change current DOM to C and state to C, so API temp calls are back to default (C)
 document.querySelector('.menu__scale--c').addEventListener('click', () => {
-
-    // Add highlight to button in dom, disable click 
 
     // Only convert temp if user is switching from one scale to another
     if (state.scale === 'f') {
