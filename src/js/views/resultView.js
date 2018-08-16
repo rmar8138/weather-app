@@ -2,13 +2,32 @@ import { elements } from './base';
 import { Spinner } from 'spin.js';
 import * as menuView from './menuView';
 
-export const displayWeather = (icon, description, date, temp, lo, hi, place) => {
+const parseDate = (str, i) => {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // Reverse date into day-month-year format
+    let output = str.split('-').reverse().slice(0, -1);
+    // Add day to front of array based on how many days from today
+    output.unshift(days[
+        // In case getDay + i is greater than days length
+        new Date().getDay() + i >= days.length ? 
+        (new Date().getDay() + i) - 7 :
+        new Date().getDay() + i
+    ]);
+    // Change numerical month into string
+    output.push(months[parseInt(output.pop())]);
+
+    return output.join(' ');
+};
+
+export const displayWeather = (icon, description, date, temp, lo, hi, place, i) => {
     const weatherCardTemplate = `
         <div class="card__place-name">
             <h2 class="heading-secondary">${place}</h2>
         </div>
         <div class="card__temp">
-            <span class="card__temp--date">${date}</span>
+            <span class="card__temp--date">${parseDate(date, i)}</span>
             <span class="card__temp--main">${Math.round(temp)}&deg;C</span>
             <span class="card__temp--hi-lo">Max: ${Math.round(lo)}&deg;C Min: ${Math.round(hi)}&deg;C</span>
         </div>
@@ -31,21 +50,24 @@ export const displayWeather = (icon, description, date, temp, lo, hi, place) => 
 
     elements.card.insertAdjacentHTML('beforeend', weatherCardTemplate);
     elements.card.insertAdjacentHTML('beforeend', listContainer);
+
+    console.log(i);
 };
 
-export const displayNextFive = (icon, description, date, temp, lo, hi) => {
+export const displayNextFive = (icon, description, date, temp, lo, hi, place, i) => {
     const nextFiveTemplate = `
         <li class="card__next-five__list-item">
             <img class="card__next-five__list-item__img" src="https://www.metaweather.com/static/img/weather/${icon}.svg" alt="${description}">
             <div class="card__next-five__list-item__temp">
                 <span class="card__next-five__list-item__temp--main">${Math.round(temp)}&deg;C</span>
                 <span class="card__next-five__list-item__temp--hi-lo">${Math.round(lo)}&deg;C ${Math.round(hi)}&deg;C</span>
-                <span class="card__next-five__list-item__temp--date">${date}</span>
+                <span class="card__next-five__list-item__temp--date">${parseDate(date, i)}</span>
             </div>
         </li>
     `;
 
     document.querySelector('.card__next-five__list').insertAdjacentHTML('beforeend', nextFiveTemplate);
+    console.log(i);
 };
 
 export const displaySpinner = (target) => {

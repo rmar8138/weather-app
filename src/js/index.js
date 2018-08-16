@@ -95,13 +95,13 @@ const controlResult = async (ID = state.search.result[0].woeid) => {
 
             if (i === 0) {
                 // Display todays weather 
-                resultView.displayWeather(...dataArr);
+                resultView.displayWeather(...dataArr, i);
 
                 // set background color to match weather
                 resultView.setBackground(state.result.weather.data.consolidated_weather[i]);
             } else {
                 // Display next five days of weather
-                resultView.displayNextFive(...dataArr);
+                resultView.displayNextFive(...dataArr, i);
             }
         }
 
